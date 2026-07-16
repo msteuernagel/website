@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcos Davi Silva Steuernagel</title>
+<meta name="description" content="Marcos Davi Silva Steuernagel — scholar of performance studies, performance and politics, and Latin American / Brazilian studies.">
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --muted:#5c5c5c;
+    --faint:#8a8a8a;
+    --rule:#e2e0da;
+    --bg:#faf9f6;
+    --accent:#7a2e2e;
+    --maxw:960px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman",serif;
+    line-height:1.65;
+    font-size:18px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* Nav */
+  nav{
+    position:sticky;top:0;z-index:10;
+    background:rgba(250,249,246,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  nav .wrap{
+    max-width:var(--maxw);margin:0 auto;padding:14px 24px;
+    display:flex;flex-wrap:wrap;gap:8px 22px;align-items:baseline;
+  }
+  nav .navlinks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-right:auto;}
+  nav a{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;
+  }
+  nav a:hover{color:var(--accent);text-decoration:none;}
+
+  /* Language toggle */
+  .lang{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:13px;letter-spacing:.5px;white-space:nowrap;
+  }
+  .lang button{
+    background:none;border:none;cursor:pointer;padding:2px 4px;
+    color:var(--faint);font:inherit;
+  }
+  .lang button.active{color:var(--accent);font-weight:700;}
+  .lang .sep{color:var(--rule);}
+
+  main{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  header.hero{
+    padding:64px 0 8px;
+    display:flex;gap:32px;align-items:center;flex-wrap:wrap;
+  }
+  header.hero .portrait{
+    width:150px;height:150px;border-radius:4px;object-fit:cover;
+    flex-shrink:0;background:#efece5;border:1px solid var(--rule);
+  }
+  header.hero .htext{flex:1;min-width:260px;}
+  header.hero h1{font-size:2.2rem;line-height:1.15;margin:0 0 6px;}
+  header.hero .role{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--muted);font-size:1rem;margin:0 0 18px;
+  }
+  .contact{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.95rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px;
+  }
+
+  section{padding:40px 0;border-top:1px solid var(--rule);}
+  h2{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.85rem;text-transform:uppercase;letter-spacing:1.5px;
+    color:var(--faint);font-weight:600;margin:0 0 20px;
+  }
+  p{margin:0 0 18px;}
+
+  ul.plain{list-style:none;margin:0;padding:0;}
+  ul.plain li{margin:0 0 14px;}
+  ul.plain li .meta{
+    display:block;color:var(--muted);font-size:.92rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+
+  ul.pubs{list-style:none;margin:0;padding:0;}
+  ul.pubs li{margin:0 0 16px;line-height:1.55;}
+  ul.pubs em{font-style:italic;}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+  @media(max-width:560px){.cols{grid-template-columns:1fr;}}
+
+  footer{
+    max-width:var(--maxw);margin:0 auto;padding:40px 24px 64px;
+    border-top:1px solid var(--rule);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.85rem;color:var(--faint);
+  }
+  footer a{color:var(--muted);}
+
+  /* language visibility */
+  [lang-hide]{display:none !important;}
+
+  /* teaching / poster links */
+  ul.courses li{margin:0 0 10px;}
+  a.poster-link{border-bottom:1px solid var(--accent);}
+  a.poster-link:hover{text-decoration:none;background:#f2ece9;}
+
+  /* lightbox */
+  .lightbox{
+    position:fixed;inset:0;z-index:100;
+    background:rgba(20,18,16,.82);
+    display:none;align-items:center;justify-content:center;
+    padding:32px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox .frame{
+    position:relative;max-width:100%;max-height:100%;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .lightbox img{
+    max-width:100%;max-height:calc(100vh - 96px);
+    object-fit:contain;background:#fff;
+    box-shadow:0 10px 40px rgba(0,0,0,.4);border-radius:2px;
+  }
+  .lightbox .caption{
+    color:#f2efe9;margin-top:12px;font-size:.9rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  .lightbox .close{
+    position:absolute;top:-14px;right:-14px;
+    width:36px;height:36px;border-radius:50%;
+    background:#fff;border:none;cursor:pointer;
+    font-size:20px;line-height:1;color:#333;
+    box-shadow:0 2px 8px rgba(0,0,0,.3);
+  }
+  .lightbox .close:hover{background:#f0ece5;}
+  /* placeholder shown if a poster file is missing */
+  .lightbox .placeholder{
+    width:min(520px,80vw);aspect-ratio:3/4;background:#efece5;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    color:var(--muted);padding:24px;border-radius:2px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="navlinks">
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#publications" data-i18n="nav_pubs">Publications</a>
+      <a href="#teaching" data-i18n="nav_teaching">Teaching</a>
+    </div>
+    <div class="lang">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <span class="sep">|</span>
+      <button id="btn-pt" onclick="setLang('pt')">POR</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <header class="hero">
+    <img class="portrait" src="portrait.jpg" alt="Marcos Davi Silva Steuernagel">
+    <div class="htext">
+      <h1>Marcos Davi Silva Steuernagel</h1>
+      <p class="role" data-i18n="role">Performance &amp; Politics &middot; Brazilian &amp; Latin American Studies</p>
+      <div class="contact">
+        <a href="mailto:marcos.steuernagel@me.com">marcos.steuernagel@me.com</a>
+        <a href="https://bsky.app/profile/msteuernagel.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+        <a href="https://www.instagram.com/msteuernagel/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2 data-i18n="h_about">About Me</h2>
+    <div data-i18n-block="about_en">
+      <p>I am a Brazilian academic living in New York City, where I research, write, and teach on performance and politics, and on Latin American and Brazilian studies. With Diana Taylor, I coedited the multilingual digital books <a href="https://scalar.usc.edu/nehvectors/wips/index" target="_blank" rel="noopener"><em>What is Performance Studies?</em></a> (2015) and <a href="https://resistantstrategies.hemi.press/" target="_blank" rel="noopener"><em>Resistant Strategies</em></a> (2021). My essays have been published in <a href="https://doi.org/10.1162/DRAM_a_00712" target="_blank" rel="noopener"><em>TDR: The Drama Review</em></a>, <a href="https://doi.org/10.1353/ltr.2019.0006" target="_blank" rel="noopener"><em>Latin American Theatre Review</em></a>, the <a href="https://journals.upress.ufl.edu/JGSS/article/view/1501" target="_blank" rel="noopener"><em>Journal of Global South Studies</em></a>, <a href="https://doi.org/10.1215/01610775-11683559" target="_blank" rel="noopener"><em>Theater: Yale's Journal of Criticism, Plays &amp; Reportage</em></a>, and <a href="https://ephemer.kunstuni-linz.at/first-issue/" target="_blank" rel="noopener"><em>ephemer: Journal for Performance and Theater Research</em></a>, among others. I am currently completing a book on the performance, policy, and politics of the Workers' Party in Brazil, from 2002 to 2016.</p>
+      <p>With fellow scholars from across countries, languages, and disciplines, I've organized panels and working groups exploring how performance — as both practice and methodology — can expand our understanding of our shared histories of coloniality, violence, and inequality across the Américas. For over twenty years, I have taught in Portuguese, English, and Spanish across several countries and continents — at the <a href="https://fap.curitiba2.unespar.edu.br/" target="_blank" rel="noopener">Universidade Estadual do Paraná</a> (Brazil), <a href="https://tisch.nyu.edu/" target="_blank" rel="noopener">New York University</a>, <a href="https://nyuad.nyu.edu/en/" target="_blank" rel="noopener">New York University Abu Dhabi</a>, the <a href="https://www.colorado.edu/" target="_blank" rel="noopener">University of Colorado Boulder</a>, and <a href="https://www.newschool.edu/" target="_blank" rel="noopener">The New School</a>.</p>
+    </div>
+    <div data-i18n-block="about_pt" lang-hide>
+      <p>Sou um professor e pesquisador brasileiro radicado em Nova York, onde atuo nas áreas de performance e política, estudos latino-americanos e estudos brasileiros. Com Diana Taylor, coeditei os livros digitais multilíngues <a href="https://scalar.usc.edu/nehvectors/wips/index" target="_blank" rel="noopener"><em>O que são os estudos da performance?</em></a> (2015) e <a href="https://resistantstrategies.hemi.press/" target="_blank" rel="noopener"><em>Estratégias resistentes</em></a> (2021) e meus artigos foram publicados em <a href="https://doi.org/10.1162/DRAM_a_00712" target="_blank" rel="noopener"><em>TDR: The Drama Review</em></a>, <a href="https://doi.org/10.1353/ltr.2019.0006" target="_blank" rel="noopener"><em>Latin American Theatre Review</em></a>, <a href="https://journals.upress.ufl.edu/JGSS/article/view/1501" target="_blank" rel="noopener"><em>Journal of Global South Studies</em></a>, <a href="https://doi.org/10.1215/01610775-11683559" target="_blank" rel="noopener"><em>Theater: Yale's Journal of Criticism, Plays &amp; Reportage</em></a> e <a href="https://ephemer.kunstuni-linz.at/first-issue/" target="_blank" rel="noopener"><em>ephemer: Journal for Performance and Theater Research</em></a>, entre outros. Atualmente estou terminando um livro sobre a performance, a política e as políticas públicas do Partido dos Trabalhadores no Brasil, de 2002 a 2016.</p>
+      <p>Junto com acadêmicos de diversas áreas, línguas e nacionalidades, tenho organizado painéis e grupos de trabalho que exploram como a performance — tanto como prática quanto como metodologia — pode ampliar nossa compreensão de histórias compartilhadas de colonialidade, violência e desigualdade nas Américas. Leciono há mais de vinte anos em português, inglês e espanhol em diferentes países e continentes — na <a href="https://fap.curitiba2.unespar.edu.br/" target="_blank" rel="noopener">Universidade Estadual do Paraná</a> (Brasil), na <a href="https://tisch.nyu.edu/" target="_blank" rel="noopener">New York University</a>, na <a href="https://nyuad.nyu.edu/en/" target="_blank" rel="noopener">New York University Abu Dhabi</a>, na <a href="https://www.colorado.edu/" target="_blank" rel="noopener">University of Colorado Boulder</a> e na <a href="https://www.newschool.edu/" target="_blank" rel="noopener">The New School</a>.</p>
+    </div>
+  </section>
+
+  <section id="background">
+    <div class="cols">
+      <div>
+        <h2 data-i18n="h_degrees">Degrees</h2>
+        <ul class="plain">
+          <li>PhD, Performance Studies<span class="meta">New York University</span></li>
+          <li>MA, Performance Studies<span class="meta">New York University</span></li>
+          <li data-i18n-html="deg_spec">Graduate Degree, Cinema and Video<span class="meta">Faculdade de Artes do Paraná, Brazil</span></li>
+          <li data-i18n-html="deg_ba">BA, Theatre Directing<span class="meta">Faculdade de Artes do Paraná, Brazil</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-i18n="h_affil">Affiliations</h2>
+        <ul class="plain">
+          <li><a href="https://www.astr.org/" target="_blank" rel="noopener">American Society for Theatre Research (ASTR)</a></li>
+          <li><a href="http://portalabrace.org/" target="_blank" rel="noopener">Associação Brasileira de Pesquisa e Pós-Graduação em Artes Cênicas (ABRACE)</a></li>
+          <li><a href="https://brasa.org/" target="_blank" rel="noopener">Brazilian Studies Association (BRASA)</a></li>
+          <li><a href="https://lasaweb.org/" target="_blank" rel="noopener">Latin American Studies Association (LASA)</a></li>
+          <li><a href="https://www.psi-web.org/" target="_blank" rel="noopener">Performance Studies International (PSi)</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2 data-i18n="h_pubs">Selected Publications</h2>
+    <ul class="pubs">
+      <li data-i18n-html="pub_ephemer">&ldquo;<a href="https://ephemer.kunstuni-linz.at/first-issue/" target="_blank" rel="noopener">What Can Cannibalism (still) do?: The Vitality of Oswald de Andrade's Manifesto Antropófago in Brazilian Performance</a>.&rdquo; 2026. <em>ephemer: Journal for Performance and Theater Research</em> 1: 73–86.</li>
+      <li>&ldquo;<a href="https://doi.org/10.1215/01610775-11683559" target="_blank" rel="noopener">Rehearsals for an Archeology of the Future: Curating Brazil in the Festival de Curitiba</a>.&rdquo; 2025. <em>Theater: Yale's Journal of Criticism, Plays &amp; Reportage</em> 55 (2): 87–99.</li>
+      <li>&ldquo;<a href="https://doi.org/10.1353/tt.2024.a920478" target="_blank" rel="noopener">Internationalizing ATHE: A Roundtable Discussion</a>.&rdquo; With Q-mars Haeri, Marjan Moosavi, Gustavo Prado Sampaio, Lerihun Birehanu Sira, Rini Tarafder, and Eunwoo Yoo. 2024. <em>Theatre Topics</em> 34 (1): 73–82.</li>
+      <li data-i18n-html="pub_resistant"><a href="https://resistantstrategies.hemi.press/" target="_blank" rel="noopener"><em>Resistant Strategies</em></a>. Edited by Marcos Steuernagel and Diana Taylor. 2021. HemiPress.</li>
+      <li>&ldquo;<a href="https://journals.upress.ufl.edu/JGSS/article/view/1501" target="_blank" rel="noopener">Who Wants Money? Radical Performance and Experimental Urbanism in the Heart of São Paulo</a>.&rdquo; 2021. <em>Journal of Global South Studies</em> 38 (1): 194–219.</li>
+      <li>&ldquo;<a href="https://doi.org/10.1353/ltr.2019.0006" target="_blank" rel="noopener">Domínio Público: Performing the Brazilian Conservative Turn</a>.&rdquo; 2019. <em>Latin American Theatre Review</em> 52 (2): 129–147.</li>
+      <li>&ldquo;<a href="https://doi.org/10.1162/DRAM_a_00712" target="_blank" rel="noopener">Here We Are Again: Performing the Temporality of the Brazilian Transition</a>.&rdquo; 2017. <em>TDR: The Drama Review</em> 61 (4): 9–21.</li>
+      <li data-i18n-html="pub_wips"><a href="https://scalar.usc.edu/nehvectors/wips/index" target="_blank" rel="noopener"><em>What is Performance Studies?</em></a> Edited by Diana Taylor and Marcos Steuernagel. 2015. Duke University Press; HemiPress.</li>
+      <li><a href="https://chiapas2015.hemi.press/" target="_blank" rel="noopener"><em>Art, Migration, and Human Rights</em></a>. Collectively co-authored digital dossier. 2015. HemiPress.</li>
+    </ul>
+  </section>
+
+  <section id="teaching">
+    <h2 data-i18n="h_teaching">Teaching</h2>
+    <p data-i18n="teaching_intro">My courses span performance theory, theater history, and Latin American and Brazilian studies. Recent courses include:</p>
+    <ul class="plain courses">
+      <li>Avant-Garde Theater History</li>
+      <li>Introduction to Latin American Studies</li>
+      <li><a href="#" class="poster-link" data-poster="poster-intro-performance-studies.jpg">Introduction to Performance Studies</a></li>
+      <li><a href="#" class="poster-link" data-poster="poster-latin-american-theater.jpg">Latin American Theater &amp; Performance</a></li>
+      <li>Performance and Technology</li>
+      <li><a href="#" class="poster-link" data-poster="poster-performing-brazil.jpg">Performing Brazil</a></li>
+      <li><a href="#" class="poster-link" data-poster="poster-performing-decoloniality.jpg">Performing Decoloniality</a></li>
+      <li>Performing Politics</li>
+      <li>Research &amp; Teaching in Theatre, Dance, and Performance Studies</li>
+      <li><a href="#" class="poster-link" data-poster="poster-theater-under-fascism.jpg">Theater Under Fascism</a></li>
+      <li>Theorizing Performance</li>
+      <li>World Theater Histories</li>
+    </ul>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="frame">
+    <button class="close" id="lightbox-close" aria-label="Close">&times;</button>
+    <div id="lightbox-body"></div>
+    <div class="caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<footer>
+  &copy; <span id="year"></span> Marcos Davi Silva Steuernagel &middot;
+  <a href="mailto:marcos.steuernagel@me.com">marcos.steuernagel@me.com</a>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Translations. Essay titles and institution names are intentionally NOT translated.
+  const I18N = {
+    en: {
+      nav_about:"About", nav_pubs:"Publications", nav_teaching:"Teaching",
+      role:"Performance &amp; Politics &middot; Brazilian &amp; Latin American Studies",
+      h_about:"About Me",
+      h_pubs:"Selected Publications",
+      h_teaching:"Teaching",
+      teaching_intro:"My courses span performance theory, theater history, and Latin American and Brazilian studies. Recent courses include:",
+      h_degrees:"Degrees",
+      h_affil:"Affiliations",
+      deg_spec:'Graduate Degree, Cinema and Video<span class="meta">Faculdade de Artes do Paraná, Brazil</span>',
+      deg_ba:'BA, Theatre Directing<span class="meta">Faculdade de Artes do Paraná, Brazil</span>',
+      pub_ephemer:'&ldquo;<a href="https://ephemer.kunstuni-linz.at/first-issue/" target="_blank" rel="noopener">What Can Cannibalism (still) do?: The Vitality of Oswald de Andrade\'s Manifesto Antropófago in Brazilian Performance</a>.&rdquo; 2026. <em>ephemer: Journal for Performance and Theater Research</em> 1: 73–86.',
+      pub_resistant:'<a href="https://resistantstrategies.hemi.press/" target="_blank" rel="noopener"><em>Resistant Strategies</em></a>. Edited by Marcos Steuernagel and Diana Taylor. 2021. HemiPress.',
+      pub_wips:'<a href="https://scalar.usc.edu/nehvectors/wips/index" target="_blank" rel="noopener"><em>What is Performance Studies?</em></a> Edited by Diana Taylor and Marcos Steuernagel. 2015. Duke University Press; HemiPress.'
+    },
+    pt: {
+      nav_about:"Sobre", nav_pubs:"Publicações", nav_teaching:"Ensino",
+      role:"Performance e Política &middot; Estudos Brasileiros e Latino-Americanos",
+      h_about:"Sobre Mim",
+      h_pubs:"Publicações Selecionadas",
+      h_teaching:"Ensino",
+      teaching_intro:"As matérias que eu leciono abrangem a teoria da performance, a história do teatro e os estudos latino-americanos e brasileiros. Algumas matérias que lecionei recentemente incluem:",
+      h_degrees:"Formação",
+      h_affil:"Afiliações",
+      deg_spec:'Especialização, Cinema e Vídeo<span class="meta">Faculdade de Artes do Paraná, Brasil</span>',
+      deg_ba:'Bacharelado, Direção Teatral<span class="meta">Faculdade de Artes do Paraná, Brasil</span>',
+      pub_ephemer:'&ldquo;<a href="https://ephemer.kunstuni-linz.at/first-issue/" target="_blank" rel="noopener">O que o canibalismo (ainda) pode fazer?: A vitalidade do Manifesto Antropófago de Oswald de Andrade na Performance Brasileira</a>.&rdquo; 2026. <em>ephemer: Journal for Performance and Theater Research</em> 1: 60–72.',
+      pub_resistant:'<a href="https://resistantstrategies.hemi.press/" target="_blank" rel="noopener"><em>Estratégias resistentes</em></a>. Editado por Marcos Steuernagel e Diana Taylor. 2021. HemiPress.',
+      pub_wips:'<a href="https://scalar.usc.edu/nehvectors/wips/index" target="_blank" rel="noopener"><em>O que são os estudos da performance?</em></a> Editado por Diana Taylor e Marcos Steuernagel. 2015. Duke University Press; HemiPress.'
+    }
+  };
+
+  function setLang(lang){
+    const dict = I18N[lang];
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+    // simple text/html swaps
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k = el.getAttribute('data-i18n');
+      if(dict[k] !== undefined) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const k = el.getAttribute('data-i18n-html');
+      if(dict[k] !== undefined) el.innerHTML = dict[k];
+    });
+
+    // block-level swaps (About paragraphs) via show/hide
+    document.querySelectorAll('[data-i18n-block]').forEach(el=>{
+      const isThis = el.getAttribute('data-i18n-block').endsWith('_'+lang);
+      if(isThis) el.removeAttribute('lang-hide'); else el.setAttribute('lang-hide','');
+    });
+
+    document.getElementById('btn-en').classList.toggle('active', lang==='en');
+    document.getElementById('btn-pt').classList.toggle('active', lang==='pt');
+  }
+
+  // ---- Poster lightbox ----
+  const lb = document.getElementById('lightbox');
+  const lbBody = document.getElementById('lightbox-body');
+  const lbCap = document.getElementById('lightbox-caption');
+
+  function openPoster(src, title){
+    lbCap.textContent = title;
+    // build an <img>; if it fails to load, show a labeled placeholder
+    const img = new Image();
+    img.alt = title;
+    img.onerror = () => {
+      lbBody.innerHTML =
+        '<div class="placeholder">Poster placeholder for<br><strong>' +
+        title + '</strong><br><br>(add ' + src + ' to the site folder)</div>';
+    };
+    img.onload = () => { lbBody.innerHTML = ''; lbBody.appendChild(img); };
+    img.src = src;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePoster(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    lbBody.innerHTML = '';
+  }
+
+  document.querySelectorAll('a.poster-link').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      openPoster(a.getAttribute('data-poster'), a.textContent.trim());
+    });
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closePoster);
+  // click on the dark backdrop (but not the poster itself) closes
+  lb.addEventListener('click', e => { if(e.target === lb) closePoster(); });
+  // Esc closes
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && lb.classList.contains('open')) closePoster();
+  });
+</script>
+
+</body>
+</html>
